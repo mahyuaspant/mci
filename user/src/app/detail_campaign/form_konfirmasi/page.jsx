@@ -21,6 +21,7 @@ const FormKonfirmasi = () => {
   const [campaignData, setCampaignData] = useState([]);
   const [profileData, setProfileData] = useState();
   const { handleSubmit, register, watch } = useForm();
+
   async function getDataCampaign() {
     const result = await getCampaign();
     return result;
@@ -34,7 +35,6 @@ const FormKonfirmasi = () => {
     if (nominal == 0) {
       return alert("Nominal harus diisi");
     }
-
     setIsLoading(true);
     const formData = new FormData();
     formData.append("name", data.nama);
@@ -196,11 +196,13 @@ const FormKonfirmasi = () => {
               <option disabled value={""}>
                 Tujuan Donasi
               </option>
-              {campaignData?.data?.map((data) => (
-                <option key={data?._id} value={data?.title}>
-                  {data.title}
-                </option>
-              ))}
+              {campaignData?.data
+                ?.filter((item) => item?.remainingDays > 0)
+                ?.map((data) => (
+                  <option key={data?._id} value={data?.title}>
+                    {data.title}
+                  </option>
+                ))}
             </select>
             <label
               htmlFor="bukti-transfer"
