@@ -22,7 +22,6 @@ export const generateMetadata = async ({ params }) => {
 const DetailCampaign = async ({ params }) => {
   const detailCampaign = await getOneCampaign(params.id);
   const donaturData = await getDonatur();
-  console.log(detailCampaign);
   return (
     <div className="bg-slate-100 min-h-screen w-full flex items-center justify-center ">
       <div className="flex min-h-screen flex-col mx-auto w-full gap-5 p-5 max-w-2xl bg-white pb-20">
@@ -117,7 +116,7 @@ const DetailCampaign = async ({ params }) => {
               </button>
             </div>
             <div className="flex flex-col gap-5 w-full">
-              {donaturData?.data?.map((item) => {
+              {donaturData?.data?.slice(0, 5)?.map((item) => {
                 return (
                   <div
                     className="flex gap-5 items-center w-full"

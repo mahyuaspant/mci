@@ -56,7 +56,6 @@ const FormKonfirmasi = () => {
 
     router.push("/detail_campaign/notifikasi");
   };
-  // console.log(campaignData);
   useEffect(() => {
     getDataCampaign()
       .then((data) => {
